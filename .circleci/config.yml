@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  build:
+    executor: docker/node:16
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Build app
+          command: npm run build
+
+  test:
+    executor: docker/node:16
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run tests
+          command: npm run test
